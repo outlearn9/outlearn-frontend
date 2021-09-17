@@ -1,5 +1,7 @@
 import React from 'react';
 import './CardComponent.css';
+import Img1 from '../../Assets/SVG/img1.svg';
+import Img2 from '../../Assets/SVG/img2.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -31,12 +33,19 @@ const CardComponent = () => {
     return (
         <div className='main-body'>
             <Card className={classes.root}>
+            <CardActions className='button-back'>
+                    <Button size="small">Back</Button>
+                </CardActions>
                 <CardContent className='card-content'>
+                    <div style={{ margin: -16 }}>
+                        <img src={Img2} alt='img 2' />
+                    </div>
+                    <div className='img1'>
+                        <img src={Img1} alt='img 1' />
+                    </div>
 
                 </CardContent>
-                {/* <CardActions>
-                    <Button size="small">Learn More</Button>
-                </CardActions> */}
+                
             </Card>
         </div>
     );

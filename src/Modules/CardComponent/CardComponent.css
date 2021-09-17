@@ -10,3 +10,20 @@
     height: 400px;
 
 }
+
+.img1 img{
+    position: relative;
+    bottom: 28vh;
+    width: 204px;
+    left: 14vw;
+}
+
+.button-back{
+position: absolute;
+}
+
+.button-back span{
+
+    font-weight: bold;
+    font-size: smaller;
+}
