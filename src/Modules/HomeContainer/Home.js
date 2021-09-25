@@ -8,7 +8,9 @@ const Home = () => {
   return (
     <>
       <Header />
-      <CardComponent/>
+      <div className="card-main-wrapper">
+        <CardComponent/>
+      </div>
     </>
   )
 }
