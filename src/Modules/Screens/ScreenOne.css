@@ -1,0 +1,63 @@
+.img1 img {
+    position: relative;
+    top: 2vh;
+    width: 204px;
+    left: 16vw;
+}
+
+.text-area {
+    padding: 0 2vw;
+    position: relative;
+    bottom: 27px;
+}
+
+.text-area>div {
+    margin: 2px 0;
+}
+
+.line-first span {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.line-two>span {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.line-three span {
+    font-size: 11px;
+    color: rgb(0 0 0 / 35%);
+    font-weight: 700;
+}
+
+.line-two>span span {
+    color: #5F22E0;
+}
+
+.opt-button {
+    margin-bottom: 10px!important;
+    border-radius: 100vw !important;
+    font-size: 11px !important;
+    text-transform: none !important;
+    background: #5F22E014 !important;
+    color: black !important;
+    font-weight: 700 !important;
+    margin-right: 10px !important;
+}
+
+.opt-selected {
+    background: #FFBC59 !important;
+    color: white !important;
+}
+
+.opt-area {
+    padding-top: 2px;
+}
+
+.add-more {
+    color: #5F22E0;
+    font-size: 12px !important;
+    font-weight: 700;
+    cursor: pointer;
+}

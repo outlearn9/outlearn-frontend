@@ -1,29 +1,72 @@
-.main-body{
+.main-body {
     width: 628px;
     margin: auto;
     position: relative;
     top: 10vh;
 }
 
-.card-content{
-
-    height: 400px;
-
+.card-content {
+    height: 430px;
 }
 
-.img1 img{
-    position: relative;
-    bottom: 28vh;
-    width: 204px;
-    left: 14vw;
+.top-buttons {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
 }
 
-.button-back{
-position: absolute;
+.top-buttons div:nth-child(1) {
+    float: left;
 }
 
-.button-back span{
+.top-buttons div:nth-child(2) {
+    float: right;
+}
 
+.button-back span {
     font-weight: bold;
     font-size: smaller;
+    text-transform: none;
+}
+
+.button-skip span {
+    font-weight: bold;
+    font-size: smaller;
+    color: #5F22E0;
+    text-transform: none;
+}
+
+.body-component {
+    /* border: 1px solid black; */
+    height: 85%;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    margin: 0 -16px;
+}
+
+.bottom-buttons {
+    /* border: 1px solid blue; */
+    position: absolute;
+    width: 100%;
+    height: 14%;
+    margin: 0 -16px;
+    bottom: 0;
+}
+
+.cont-button {
+    background: #5F22E0;
+    width: 25%;
+    border-radius: 100vw !important;
+    font-size: 11px !important;
+    position: relative !important;
+    left: 38% !important;
+    text-transform: none !important;
+}
+
+.pagination-block {
+    position: relative;
+    left: 49%;
+    font-size: 13px;
+    padding-top: 5px;
 }

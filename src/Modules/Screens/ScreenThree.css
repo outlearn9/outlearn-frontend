@@ -1,0 +1,91 @@
+.text-area-three {
+    padding: 0 2vw;
+    position: relative;
+    top: 50px;
+}
+
+.text-area-three>div {
+    margin: 10px 0;
+}
+
+.line-one>span {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.line-one>span span {
+    color: #5F22E0;
+}
+
+.form-area {
+    /* border: 1px solid black; */
+    position: relative;
+    top: 84px;
+    width: 76%;
+    left: 11%;
+    height: 60%;
+}
+
+.MuiInput-underline:before {
+    border: none !important;
+}
+
+.MuiInput-underline:hover {
+    border: none !important;
+}
+
+.MuiInputBase-root input {
+    background: #F9F9FB;
+    font-size: 12px;
+    padding: 0 10px;
+    height: 30px;
+}
+
+.input-legends {
+    margin: 0 8px !important;
+    font-weight: 700;
+    font-size: 11px;
+    width: 100%;
+}
+
+.input-legends span {
+    color: #6F6E6E;
+    font-weight: 400;
+    font-size: 10px;
+    margin-left: 12px;
+}
+
+.MuiInput-root {
+    width: 100%;
+    margin: 2px 8px !important;
+}
+
+.input-area {
+    width: 96% !important;
+    margin-bottom: 0px !important;
+}
+
+.input-area-half {
+    width: 46% !important;
+    margin-bottom: 5px !important;
+    float: left;
+}
+
+.MuiSelect-selectMenu {
+    background: #F9F9FB !important;
+}
+
+.leg-text {
+    color: #6F6E6E;
+    font-weight: 400;
+    font-size: 10px;
+}
+
+.input-area:nth-child(3) {
+    margin: -12px 8px !important;
+}
+
+.radio-container span {
+    transform: scale(.8);
+    font-size: 12px;
+}
