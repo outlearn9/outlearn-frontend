@@ -6,6 +6,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -115,31 +117,46 @@ const ScreenThree = () => {
                             /><span>PG Student</span>
                         </div>
                     </div>
+                    {
+                        selectedValue == 'wp' ? '' :
+                            <div className="input-area-half">
+                                <div className="input-legends">{(selectedValue == 'ug' || selectedValue == 'pg') ? 'Start Year' : selectedValue == 'wp' ? '' : ''}
+                                </div>
 
-                    <div className="input-area-half">
-                        <div className="input-legends">{selectedValue == 'ug' ? 'Course' : selectedValue == 'wp' ? 'Work Field' : ''}
-                        </div>
-                        <div className="select-area">
-                            <Select
-                                labelId="demo-controlled-open-select-label"
-                                id="demo-controlled-open-select"
-                                open={openOne}
-                                onClose={handleCloseOne}
-                                onOpen={handleOpenOne}
-                                value={age}
-                                onChange={handleChangee}
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {/* <MenuItem value={10}>Ten</MenuItem>
+
+
+                                <div className="select-area">
+                                    {(selectedValue == 'ug' || selectedValue == 'pg') ? <TextField
+                                        id="start-year"
+                                        label=""
+                                        type="year"
+                                        defaultValue="1990"
+                                        className={classes.textField}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                    /> : <Select
+                                        labelId="demo-controlled-open-select-label"
+                                        id="demo-controlled-open-select"
+                                        open={openOne}
+                                        onClose={handleCloseOne}
+                                        onOpen={handleOpenOne}
+                                        value={age}
+                                        onChange={handleChangee}
+                                    >
+                                        <MenuItem value="">
+                                            <em>None</em>
+                                        </MenuItem>
+                                        {/* <MenuItem value={10}>Ten</MenuItem>
                                 <MenuItem value={20}>Twenty</MenuItem>
                                 <MenuItem value={30}>Thirty</MenuItem> */}
-                            </Select>
-                        </div>
-                    </div>
+                                    </Select>}
+
+                                </div>
+                            </div>
+                    }
                     <div className="input-area-half">
-                        <div className="input-legends">{selectedValue == 'ug' ? 'College Year' : selectedValue == 'wp' ? 'Experience (yrs)' : ''}
+                        <div className="input-legends">{selectedValue == 'ug' || selectedValue == 'pg' ? 'End Year' : selectedValue == 'wp' ? 'Experience (yrs)' : ''}
                         </div>
                         <div className="select-area">
                             <Select
