@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { Context } from '../../Store/Store'
 import './ScreenThree.css';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,9 +7,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
-
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,20 +26,70 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ScreenThree = () => {
-    const [selectedValue, setSelectedValue] = useState('ug');
-    const [age, setAge] = useState('');
+    const [state, dispatch] = useContext(Context);
+
+    const { pageNo: pgNo,
+        selectedRadio,
+        startYear: syear,
+        endYear: eyear,
+        exp: xp,
+        username: uname,
+        mobile: mob } = state;
+
+    let usernameInput = React.createRef();
+    let mobileInput = React.createRef();
+    const [pageNo, setPageNo] = useState(pgNo);
+    const [selectedValue, setSelectedValue] = useState(selectedRadio);
+    const [startYear, setStartYear] = useState(syear);
+    const [endYear, setEndYear] = useState(eyear);
+    const [exp, setExp] = useState(xp);
     const [openOne, setOpenOne] = useState(false);
     const [openTwo, setOpenTwo] = useState(false);
+    const [username, setUsername] = useState(uname);
+    const [mobile, setMobile] = useState(mob);
     const classes = useStyles();
+    const yearArr = [];
+    const expArr = [];
+
+    useEffect(() => {
+        dispatch({ type: 'SET_PAGE', pageNo: pageNo })
+    }, [pageNo]);
+    useEffect(() => {
+        dispatch({ type: 'SET_SELECTED_RADIO', selectedRadio: selectedValue })
+    }, [selectedValue]);
+    useEffect(() => {
+        dispatch({ type: 'SET_START_YEAR', startYear: startYear })
+    }, [startYear]);
+    useEffect(() => {
+        dispatch({ type: 'SET_END_YEAR', endYear: endYear })
+    }, [endYear]);
+    useEffect(() => {
+        dispatch({ type: 'SET_EXP', exp: exp })
+    }, [exp]);
+    useEffect(() => {
+        dispatch({ type: 'SET_USERNAME', username: username })
+    }, [username])
+    useEffect(() => {
+        dispatch({ type: 'SET_MOBILE', mobile: mobile })
+    }, [mobile])
+
+
 
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
     };
 
-    const handleChangee = (event) => {
-        setAge(event.target.value);
+    const handleChangeStart = (event) => {
+        setStartYear(event.target.value);
     };
 
+    const handleChangeEnd = (event) => {
+        setEndYear(event.target.value);
+    };
+
+    const handleChangeExp = (event) => {
+        setExp(event.target.value);
+    };
     const handleCloseOne = () => {
         setOpenOne(false);
     };
@@ -55,6 +103,24 @@ const ScreenThree = () => {
     const handleOpenTwo = () => {
         setOpenTwo(true);
     };
+    const handleUserChange = () => {
+        setUsername(usernameInput.current.children[0].value)
+    }
+    const handleMobileChange = () => {
+        setMobile(mobileInput.current.children[0].value);
+    }
+
+
+
+
+    for (let count = 1990; count <= new Date().getFullYear(); count++) {
+        yearArr.push(count);
+    }
+
+    for (let data = 0; data <= 26; data++) {
+        data < 26 ? expArr.push(data) : expArr.push('25+');
+    }
+
 
     return (
         <>
@@ -68,12 +134,12 @@ const ScreenThree = () => {
                 <form className={classes.root} noValidate autoComplete="off">
                     <div className="input-area">
                         <div className="input-legends">Name</div>
-                        <Input placeholder="Type" inputProps={{ 'aria-label': 'description' }} />
+                        <Input ref={usernameInput} placeholder="Type Name" onChange={() => handleUserChange()} inputProps={{ 'aria-label': 'description' , 'value':username }}  />
                     </div>
                     <div className="input-area">
                         <div className="input-legends">Mobile<span>*You will recieve a verification code</span>
                         </div>
-                        <Input placeholder="+91 | Mobile Number" inputProps={{ 'aria-label': 'description' }} />
+                        <Input ref={mobileInput} placeholder="+91 | Mobile Number" onChange={() => handleMobileChange()} inputProps={{ 'aria-label': 'description', 'value': mobile }} />
                     </div>
 
                     <div className="input-area">
@@ -124,61 +190,80 @@ const ScreenThree = () => {
                                 </div>
 
 
-
                                 <div className="select-area">
-                                    {(selectedValue == 'ug' || selectedValue == 'pg') ? <TextField
-                                        id="start-year"
-                                        label=""
-                                        type="year"
-                                        defaultValue="1990"
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    /> : <Select
+                                    <Select
                                         labelId="demo-controlled-open-select-label"
                                         id="demo-controlled-open-select"
                                         open={openOne}
                                         onClose={handleCloseOne}
                                         onOpen={handleOpenOne}
-                                        value={age}
-                                        onChange={handleChangee}
+                                        value={startYear}
+                                        onChange={handleChangeStart}
                                     >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        {/* <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem> */}
-                                    </Select>}
-
+                                        {
+                                            yearArr.map((count) => {
+                                                return (
+                                                    <MenuItem value={count}>
+                                                        <em>{count}</em>
+                                                    </MenuItem>
+                                                )
+                                            })
+                                        }
+                                    </Select>
                                 </div>
                             </div>
                     }
                     <div className="input-area-half">
                         <div className="input-legends">{selectedValue == 'ug' || selectedValue == 'pg' ? 'End Year' : selectedValue == 'wp' ? 'Experience (yrs)' : ''}
                         </div>
-                        <div className="select-area">
-                            <Select
-                                labelId="demo-controlled-open-select-label"
-                                id="demo-controlled-open-select"
-                                open={openTwo}
-                                onClose={handleCloseTwo}
-                                onOpen={handleOpenTwo}
-                                value={age}
-                                onChange={handleChangee}
-                            >
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                {/* <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem> */}
-                            </Select>
-                        </div>
+                        {
+                            selectedValue == 'ug' || selectedValue == 'pg' ?
+                                <div className="select-area">
+                                    <Select
+                                        labelId="demo-controlled-open-select-label"
+                                        id="demo-controlled-open-select"
+                                        open={openTwo}
+                                        onClose={handleCloseTwo}
+                                        onOpen={handleOpenTwo}
+                                        value={endYear}
+                                        onChange={handleChangeEnd}
+                                    >
+                                        {
+                                            yearArr.map((count) => {
+                                                return (
+                                                    <MenuItem value={count}>
+                                                        <em>{count}</em>
+                                                    </MenuItem>
+                                                )
+                                            })
+                                        }
+                                    </Select>
+                                </div> :
+                                selectedValue == 'wp' ?
+                                    <div className="select-area">
+                                        <Select
+                                            labelId="demo-controlled-open-select-label"
+                                            id="demo-controlled-open-select"
+                                            open={openOne}
+                                            onClose={handleCloseOne}
+                                            onOpen={handleOpenOne}
+                                            value={exp}
+                                            onChange={handleChangeExp}
+                                        >
+                                            {
+                                                expArr.map((count) => {
+                                                    return (
+                                                        <MenuItem value={count}>
+                                                            <em>{count}</em>
+                                                        </MenuItem>
+                                                    )
+                                                })
+                                            }
+                                        </Select>
+                                    </div> : ''
+                        }
                     </div>
                 </form>
-
             </div >
         </>
     )

@@ -23,9 +23,9 @@ const ScreenOne = () => {
                     </span>
                 </div>
                 <div className="opt-area">
-                    {scrOne.map(itm => {
+                    {scrOne.map((itm,index) => {
                         return (
-                            <Button variant="contained" color="primary" className={itm.selected ? "opt-button opt-selected" : "opt-button "}>
+                            <Button variant="contained" key={index} color="primary" className={itm.selected ? "opt-button opt-selected" : "opt-button "}>
                                 {itm.option}
                             </Button>
                         )

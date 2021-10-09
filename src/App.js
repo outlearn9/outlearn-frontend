@@ -2,10 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import './Assets/Fonts/font.css';
 import Home from './Modules/HomeContainer/Home';
+import Store from './Store/Store'
 
 function App() {
   return (
-    <Home/>
+    <Store>
+      <Home />
+    </Store>
   );
 }
 

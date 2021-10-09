@@ -54,6 +54,11 @@
     bottom: 0;
 }
 
+.bottom-buttons a {
+    color: white;
+    text-decoration: none;
+}
+
 .cont-button {
     background: #5F22E0;
     width: 25%;

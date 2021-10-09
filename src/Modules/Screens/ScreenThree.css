@@ -89,3 +89,7 @@
     transform: scale(.8);
     font-size: 12px;
 }
+
+.MuiMenu-paper{
+    max-height: calc(100% - 60%) !important;
+}
