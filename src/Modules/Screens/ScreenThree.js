@@ -134,7 +134,7 @@ const ScreenThree = () => {
                 <form className={classes.root} noValidate autoComplete="off">
                     <div className="input-area">
                         <div className="input-legends">Name</div>
-                        <Input ref={usernameInput} placeholder="Type Name" onChange={() => handleUserChange()} inputProps={{ 'aria-label': 'description' , 'value':username }}  />
+                        <Input ref={usernameInput} placeholder="Type Name" onChange={() => handleUserChange()} inputProps={{ 'aria-label': 'description', 'value': username }} />
                     </div>
                     <div className="input-area">
                         <div className="input-legends">Mobile<span>*You will recieve a verification code</span>
@@ -166,14 +166,6 @@ const ScreenThree = () => {
                                 color="primary"
                             /><span>UG Student</span>
                             <Radio
-                                checked={selectedValue === 'wp'}
-                                onChange={handleChange}
-                                value="wp"
-                                name="radio-button-demo"
-                                // inputProps={{ 'aria-label': 'B' }}
-                                color="primary"
-                            /><span>Working Professional</span>
-                            <Radio
                                 checked={selectedValue === 'pg'}
                                 onChange={handleChange}
                                 value="pg"
@@ -181,6 +173,14 @@ const ScreenThree = () => {
                                 // inputProps={{ 'aria-label': 'C' }}
                                 color="primary"
                             /><span>PG Student</span>
+                            <Radio
+                                checked={selectedValue === 'wp'}
+                                onChange={handleChange}
+                                value="wp"
+                                name="radio-button-demo"
+                                // inputProps={{ 'aria-label': 'B' }}
+                                color="primary"
+                            /><span>Working Professional</span>
                         </div>
                     </div>
                     {
