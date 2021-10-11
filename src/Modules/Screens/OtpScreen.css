@@ -1,3 +1,7 @@
 .fa-otp{
     top:30%;
 }
+
+.transform-50 {
+    transform: translateY(-77px);
+}

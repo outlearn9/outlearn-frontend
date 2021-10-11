@@ -75,7 +75,7 @@ const OtpScreen = () => {
 
     return (
         <>
-            <div className="text-area-three">
+            <div className="text-area-three transform-50">
                 <div className="line-one">
                     <span>Enter the code generated on your mobile device below to Log In!
                     </span>

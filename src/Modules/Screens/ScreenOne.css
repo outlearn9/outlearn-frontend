@@ -1,12 +1,13 @@
 .img1 img {
-    position: relative;
-    top: 2vh;
     width: 204px;
-    left: 16vw;
+}
+
+.img1{
+    transform: translateY(-20px);
 }
 
 .text-area {
-    padding: 0 2vw;
+    padding: 0 20px;
     position: relative;
     bottom: 27px;
 }

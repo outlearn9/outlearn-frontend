@@ -30,25 +30,14 @@ body{
 }
 
 .app-name{
-
-    display: inline-block;
-    width: auto;
-    position: relative;
-    left: -6vw;
-    top: -1.5vh;
     color: white;
+    cursor: pointer;
 }
 
 
 .user-name{
-
     height: 12px;
     padding: 8px;
-    display: inline-block;
-    width: auto;
-    position: absolute;
-    right: 5vw;
-    top: .65vh;
     background: #FFDEAC;
     border-radius: 13px;
     cursor: pointer;
@@ -58,4 +47,26 @@ body{
 
     position: relative;
     bottom: .8vh;
+}
+
+.makeStyles-paper-9 {
+    color: rgba(0, 0, 0, 0.54);
+    border-radius: 0;
+    padding: 12px 5vw;
+    display: flex;
+    background: #5F22E0;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-nav-wrap{
+    display: flex;
+    align-items: center;
+}
+
+.logout-btn{
+    color: white;
+    margin-left: 20px;
+    cursor: pointer;
 }

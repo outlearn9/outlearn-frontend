@@ -26,6 +26,7 @@ import { ApiCall } from '../Controller/Controller';
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
+        position: 'relative'
     },
     title: {
         fontSize: 14,

@@ -133,8 +133,8 @@ const ScreenThree = () => {
             <div className="form-area">
                 <form className={classes.root} noValidate autoComplete="off">
                     <div className="input-area">
-                        <div className="input-legends">Name</div>
-                        <Input ref={usernameInput} placeholder="Type Name" onChange={() => handleUserChange()} inputProps={{ 'aria-label': 'description', 'value': username }} />
+                        <div className="input-legends">Email</div>
+                        <Input ref={usernameInput} placeholder="Type Email" onChange={() => handleUserChange()} inputProps={{ 'aria-label': 'description', 'value': username }} />
                     </div>
                     <div className="input-area">
                         <div className="input-legends">Mobile<span>*You will recieve a verification code</span>
