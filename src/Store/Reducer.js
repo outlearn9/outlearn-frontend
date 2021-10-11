@@ -40,6 +40,16 @@ const Reducer = (state, action) => {
                 ...state,
                 switchHome: action.switchHome
             };
+        case 'SET_SCRONE_OPT':
+            return {
+                ...state,
+                scrOneOpt: action.scrOneOpt
+            };
+        case 'SET_SCRTWO_OPT':
+            return {
+                ...state,
+                scrTwoOpt: action.scrTwoOpt
+            };
         default:
             return state;
     }

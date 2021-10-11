@@ -24,9 +24,9 @@ const ScreenTwo = () => {
                     </span>
                 </div> */}
                 <div className="opt-area-two">
-                    {scrTwo.map(itm => {
+                    {scrTwo.map((itm,index) => {
                         return (
-                            <Button variant="contained" color="primary" className={itm.selected ? "opt-button opt-selected" : "opt-button "}>
+                            <Button variant="contained" key={index} color="primary" className={itm.selected ? "opt-button opt-selected" : "opt-button "}>
                                 {itm.option}
                             </Button>
                         )

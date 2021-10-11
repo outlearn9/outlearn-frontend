@@ -31,8 +31,8 @@ const ScreenOne = () => {
                         )
 
                     })}
-
-                    <span className="add-more">+add more</span>
+{/* 
+                    <span className="add-more">+add more</span> */}
 
                 </div>
             </div>

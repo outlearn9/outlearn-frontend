@@ -19,6 +19,8 @@ import OtpScreen from '../Screens/OtpScreen';
 import ScreenThree from '../Screens/ScreenThree'
 import Header from '../Header/Header';
 import LoginPage from '../Screens/LoginPage';
+import { v4 as uuidv4 } from 'uuid';
+import { ApiCall } from '../Controller/Controller';
 
 
 const useStyles = makeStyles({
@@ -56,6 +58,18 @@ const CardComponent = () => {
     const handleLogin = () => {
 
     };
+
+    const handleSubmitClick = () => {
+        let temp = pageNo < 3 ? setPageNo(pageNo + 1) : pageNo === 3 && mobile ? setPageNo(4) : pageNo === 4 ? handleOtpSubmit() : '';
+        apiHandler();
+    }
+
+    const apiHandler = () => {
+
+        
+
+
+    }
 
     const classes = useStyles();
 
@@ -115,7 +129,7 @@ const CardComponent = () => {
                                 <Button variant="contained" color="primary" className="cont-button" onClick={() => handleLogin()}>
                                     Log In
                                 </Button> :
-                                <Button variant="contained" color="primary" className="cont-button" onClick={() => pageNo < 3 ? setPageNo(pageNo + 1) : pageNo === 3 && mobile ? setPageNo(4) : pageNo === 4 ? handleOtpSubmit() : ''}>
+                                <Button variant="contained" color="primary" className="cont-button" onClick={() => handleSubmitClick()}>
                                     {pageNo < 4 ? 'Continue' :
                                         'Submit'}
                                 </Button>

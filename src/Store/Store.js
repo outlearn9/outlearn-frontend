@@ -11,6 +11,8 @@ const initialState = {
     username : '',
     mobile:'',
     switchHome :false,
+    scrOneOpt:[],
+    scrTwoOpt:[],
 };
 
 

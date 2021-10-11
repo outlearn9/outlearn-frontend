@@ -201,9 +201,9 @@ const ScreenThree = () => {
                                         onChange={handleChangeStart}
                                     >
                                         {
-                                            yearArr.map((count) => {
+                                            yearArr.map((count,index) => {
                                                 return (
-                                                    <MenuItem value={count}>
+                                                    <MenuItem key={index} value={count}>
                                                         <em>{count}</em>
                                                     </MenuItem>
                                                 )
@@ -229,9 +229,9 @@ const ScreenThree = () => {
                                         onChange={handleChangeEnd}
                                     >
                                         {
-                                            yearArr.map((count) => {
+                                            yearArr.map((count,index) => {
                                                 return (
-                                                    <MenuItem value={count}>
+                                                    <MenuItem key={index} value={count}>
                                                         <em>{count}</em>
                                                     </MenuItem>
                                                 )
