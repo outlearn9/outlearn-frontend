@@ -6,12 +6,16 @@ import Button from '@material-ui/core/Button';
 import { Context } from '../../Store/Store'
 const ScreenTwo = () => {
     const [state, dispatch] = useContext(Context);
-    const { scrTwoOpt } = state;
-    const [selectedOpt, setSelectedOpt] = useState({});
+    const { scrTwoOpt,scrTwoOptSelected } = state;
+    const [selectedOpt, setSelectedOpt] = useState(scrTwoOptSelected);
 
     const handleSelection = (item) => {
             setSelectedOpt(item); 
     }
+
+    useEffect(()=>{
+        dispatch({ type: 'SET_SCRTWO_OPT_SELECTED', scrTwoOptSelected: selectedOpt })
+    },[selectedOpt])
     return (
         <>
             <div className='img1'>

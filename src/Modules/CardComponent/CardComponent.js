@@ -1,10 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
 import { Context } from '../../Store/Store'
 import './CardComponent.css';
 import Img2 from '../../Assets/SVG/img2.svg';
@@ -16,8 +10,7 @@ import Button from '@material-ui/core/Button';
 import ScreenOne from '../Screens/ScreenOne';
 import ScreenTwo from '../Screens/ScreenTwo';
 import OtpScreen from '../Screens/OtpScreen';
-import ScreenThree from '../Screens/ScreenThree'
-import Header from '../Header/Header';
+import ScreenThree from '../Screens/ScreenThree';
 import LoginPage from '../Screens/LoginPage';
 import { v4 as uuidv4 } from 'uuid';
 import { ApiCall } from '../Controller/Controller';
@@ -38,9 +31,28 @@ const useStyles = makeStyles({
 
 const CardComponent = () => {
     const [state, dispatch] = useContext(Context);
-    const { pageNo: page, mobile, switchHome } = state;
+    const { pageNo: page, mobile, switchHome, uuid, scrOneOptSelected, scrTwoOptSelected } = state;
     const [pageNo, setPageNo] = useState(page);
+    const [isDisabled, setIsDisabled] = useState(false);
     const [homeSwitch, setHomeSwitch] = useState(switchHome)
+
+
+    useEffect(() => {
+        let uuids = localStorage.getItem('visitor_info') && JSON.parse(localStorage.getItem('visitor_info')).uuid ?
+            JSON.parse(localStorage.getItem('visitor_info')).uuid :
+            uuidv4();
+        dispatch({ type: 'SET_UUID', uuid: uuids })
+    }, [])
+
+    useEffect(() => {
+        if (pageNo === 1 && !Object.keys(scrOneOptSelected).length) {
+            setIsDisabled(true);
+        } else if (pageNo === 2 && !Object.keys(scrTwoOptSelected).length) {
+            setIsDisabled(true);
+        } else {
+            setIsDisabled(false);
+        }
+    })
 
     useEffect(() => {
         dispatch({ type: 'SET_PAGE', pageNo: pageNo })
@@ -62,14 +74,25 @@ const CardComponent = () => {
 
     const handleSubmitClick = () => {
         let temp = pageNo < 3 ? setPageNo(pageNo + 1) : pageNo === 3 && mobile ? setPageNo(4) : pageNo === 4 ? handleOtpSubmit() : '';
-        apiHandler();
+        if (pageNo === 2) {
+            localStorage.setItem("visitor_info", JSON.stringify({ uuid: uuid, specialisation_id: scrOneOptSelected.id, higher_studies_id: scrTwoOptSelected.id }));
+            apiHandler();
+        }
     }
 
     const apiHandler = () => {
-
-        
-
-
+        const reqHeader = new Headers();
+        reqHeader.append('Content-Type', 'text/json');
+        const saveInfoHeader = {
+            method: 'POST',
+            headers: reqHeader,
+            body: JSON.stringify({
+                "visitor_id": uuid,
+                "specialisation_id": scrOneOptSelected.id,
+                "higher_studies_id": scrTwoOptSelected.id
+            })
+        };
+        ApiCall('/api/v1/saveVisitorInfo', saveInfoHeader);
     }
 
     const classes = useStyles();
@@ -102,12 +125,15 @@ const CardComponent = () => {
 
                 {!window.location.pathname.match('/login') ?
                     <div className='top-buttons'>
-                        <CardActions className='button-back'>
-                            <Button size="small" onClick={() => pageNo > 1 ? setPageNo(pageNo - 1) : ''}>Back</Button>
-                        </CardActions>
-                        {pageNo > 1 ? <CardActions className='button-skip'>
-                            <Button size="small">Skip</Button>
-                        </CardActions> : ''}
+
+                        {pageNo > 1 ? <>
+                            <CardActions className='button-back'>
+                                <Button size="small" onClick={() => pageNo > 1 ? setPageNo(pageNo - 1) : ''}>Back</Button>
+                            </CardActions>
+                            <CardActions className='button-skip'>
+                                <Button size="small">Skip</Button>
+                            </CardActions>
+                        </> : ''}
 
                     </div>
                     :
@@ -130,7 +156,7 @@ const CardComponent = () => {
                                 <Button variant="contained" color="primary" className="cont-button" onClick={() => handleLogin()}>
                                     Log In
                                 </Button> :
-                                <Button variant="contained" color="primary" className="cont-button" onClick={() => handleSubmitClick()}>
+                                <Button variant="contained" color="primary" className="cont-button" onClick={() => handleSubmitClick()} disabled={isDisabled}>
                                     {pageNo < 4 ? 'Continue' :
                                         'Submit'}
                                 </Button>

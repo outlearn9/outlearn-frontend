@@ -7,13 +7,17 @@ import { Context } from '../../Store/Store'
 
 const ScreenOne = () => {
     const [state, dispatch] = useContext(Context);
-    const { scrOneOpt } = state;
-    const [selectedOpt, setSelectedOpt] = useState({});
+    const { scrOneOpt,scrOneOptSelected } = state;
+    const [selectedOpt, setSelectedOpt] = useState(scrOneOptSelected);
 
 
     const handleSelection = (item) => {
             setSelectedOpt(item); 
     }
+
+    useEffect(()=>{
+        dispatch({ type: 'SET_SCRONE_OPT_SELECTED', scrOneOptSelected: selectedOpt })
+    },[selectedOpt])
     return (
         <>
             <div className='img1'>
