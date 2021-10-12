@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import './Assets/Fonts/font.css';
 import Home from './Modules/HomeContainer/Home';
 import Store from './Store/Store'

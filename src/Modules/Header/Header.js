@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         background: '#5F22E0',
         borderRadius: 0,
         display: 'flex',
-        padding: '12px 5vw;',
+        padding: '0px 5vw;',
         alignItems: 'center',
         justifyContent: 'space-between'
     },
@@ -50,7 +50,7 @@ const Header = () => {
                             <span>A</span>
                             
                         </div>
-                        <div classame="logout-btn">Logout</div>
+                            <p className="logout-btn">Logout</p>
                         </div>
 
                     </Paper>

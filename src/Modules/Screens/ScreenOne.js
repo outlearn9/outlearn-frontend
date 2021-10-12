@@ -24,7 +24,7 @@ const ScreenOne = () => {
                     <span>Please tell us your interests to help us guide you better.</span>
                 </div>
                 <div className="line-two">
-                    <span>Which <span>specialisation</span> are you most <br /> intersted in?</span>
+                    <span>Which <span>specialisation</span> are you most intersted in?</span>
                 </div>
                 <div className="line-three">
                     <span>
