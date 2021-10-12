@@ -12,7 +12,9 @@ const initialState = {
     mobile:'',
     switchHome :false,
     scrOneOpt:[],
+    scrOneOptSelected:{},
     scrTwoOpt:[],
+    scrTwoOptSelected:{},
 };
 
 

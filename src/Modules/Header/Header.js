@@ -45,12 +45,12 @@ const Header = () => {
                             <input />
                         </div> */}
 
-                        <div class="right-nav-wrap">
+                        <div className="right-nav-wrap">
                         <div className='user-name'>
                             <span>A</span>
                             
                         </div>
-                        <div class="logout-btn">Logout</div>
+                        <div classame="logout-btn">Logout</div>
                         </div>
 
                     </Paper>

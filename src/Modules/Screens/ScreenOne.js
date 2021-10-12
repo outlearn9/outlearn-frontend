@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './ScreenOne.css';
 import Img1 from '../../Assets/SVG/img1.svg';
-import { scrOne } from '../Metadata/Constants';
+// import { scrOne } from '../Metadata/Constants';
 import Button from '@material-ui/core/Button';
-const ScreenOne = () => {
+import { Context } from '../../Store/Store'
 
+const ScreenOne = () => {
+    const [state, dispatch] = useContext(Context);
+    const { scrOneOpt } = state;
+    const [selectedOpt, setSelectedOpt] = useState({});
+
+
+    const handleSelection = (item) => {
+            setSelectedOpt(item); 
+    }
     return (
         <>
             <div className='img1'>
@@ -23,15 +32,15 @@ const ScreenOne = () => {
                     </span>
                 </div>
                 <div className="opt-area">
-                    {scrOne.map((itm,index) => {
+                    {scrOneOpt.map((itm) => {
                         return (
-                            <Button variant="contained" key={index} color="primary" className={itm.selected ? "opt-button opt-selected" : "opt-button "}>
-                                {itm.option}
+                            <Button variant="contained" key={itm.id} color="primary" onClick={() => handleSelection(itm)} className={selectedOpt && selectedOpt.id === itm.id ? "opt-button opt-selected" : "opt-button "}>
+                                {itm.speicialization}
                             </Button>
                         )
 
                     })}
-{/* 
+                    {/* 
                     <span className="add-more">+add more</span> */}
 
                 </div>

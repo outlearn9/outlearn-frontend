@@ -13,21 +13,29 @@ const Home = () => {
   // const [switchHome , setSwitchHome ] = useState(sHome);
 
   useEffect(() => {
-    const reqHeader = new Headers();
-    reqHeader.append('Content-Type', 'text/json');
-    let scrOneReqObj = {
-      method: 'GET', headers: reqHeader,
-    };
-      let res = async () => {
-          let response = await (ApiCall('/api/v1/specialisation', scrOneReqObj));
-          return response;
-      }
-
-      // let res = ApiCall('/api/v1/specialisation', scrOneReqObj)
-      console.log(res());
-
-    // dispatch({ type: 'SET_SWITCH_HOME', switchHome: false })
+    resScrOne();
+    resScrTwo();
   }, []);
+
+  const reqHeader = new Headers();
+  reqHeader.append('Content-Type', 'text/json');
+  const scrOneReqObj = {
+    method: 'GET', headers: reqHeader,
+  };
+
+  const resScrOne = async () => {
+    let response = await ApiCall('/api/v1/specialisation', scrOneReqObj);
+    if (response.status == 200) {
+      dispatch({ type: 'SET_SCRONE_OPT', scrOneOpt: response.data })
+    }
+  }
+
+  const resScrTwo = async () => {
+    let response = await ApiCall('/api/v1/getHigherStudy', scrOneReqObj);
+    if (response.status == 200) {
+      dispatch({ type: 'SET_SCRTWO_OPT', scrTwoOpt: response.data })
+    }
+  }
 
   return (
     <>
