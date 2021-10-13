@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './ScreenOne.css';
 import Img1 from '../../Assets/SVG/img1.svg';
-// import { scrOne } from '../Metadata/Constants';
 import Button from '@material-ui/core/Button';
 import { Context } from '../../Store/Store'
 

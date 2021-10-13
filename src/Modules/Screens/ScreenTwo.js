@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import './ScreenTwo.css';
 import Img3 from '../../Assets/SVG/Img3.svg';
-import { scrTwo } from '../Metadata/Constants';
 import Button from '@material-ui/core/Button';
 import { Context } from '../../Store/Store'
 const ScreenTwo = () => {

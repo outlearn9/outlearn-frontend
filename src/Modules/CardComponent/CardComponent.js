@@ -31,11 +31,10 @@ const useStyles = makeStyles({
 
 const CardComponent = () => {
     const [state, dispatch] = useContext(Context);
-    const { pageNo: page, mobile, switchHome, uuid, scrOneOptSelected, scrTwoOptSelected } = state;
+    const { pageNo: page, username, selectedRadio, startYear, endYear, exp, mobile, switchHome, uuid, scrOneOptSelected, scrTwoOptSelected } = state;
     const [pageNo, setPageNo] = useState(page);
     const [isDisabled, setIsDisabled] = useState(false);
-    const [homeSwitch, setHomeSwitch] = useState(switchHome)
-
+    const [homeSwitch, setHomeSwitch] = useState(switchHome);
 
     useEffect(() => {
         let uuids = localStorage.getItem('visitor_info') && JSON.parse(localStorage.getItem('visitor_info')).uuid ?
@@ -48,6 +47,8 @@ const CardComponent = () => {
         if (pageNo === 1 && !Object.keys(scrOneOptSelected).length) {
             setIsDisabled(true);
         } else if (pageNo === 2 && !Object.keys(scrTwoOptSelected).length) {
+            setIsDisabled(true);
+        } else if (pageNo === 3 && !username && !mobile) {
             setIsDisabled(true);
         } else {
             setIsDisabled(false);
@@ -63,7 +64,6 @@ const CardComponent = () => {
     }, [homeSwitch]);
 
     const handleOtpSubmit = () => {
-        debugger;
         setHomeSwitch(true);
         window.location.pathname = '/Home';
     }
@@ -76,11 +76,14 @@ const CardComponent = () => {
         let temp = pageNo < 3 ? setPageNo(pageNo + 1) : pageNo === 3 && mobile ? setPageNo(4) : pageNo === 4 ? handleOtpSubmit() : '';
         if (pageNo === 2) {
             localStorage.setItem("visitor_info", JSON.stringify({ uuid: uuid, specialisation_id: scrOneOptSelected.id, higher_studies_id: scrTwoOptSelected.id }));
-            apiHandler();
+            saveVisitorInfo();
+        }
+        if (pageNo === 3) {
+            saveUserProfile();
         }
     }
 
-    const apiHandler = () => {
+    const saveVisitorInfo = () => {
         const reqHeader = new Headers();
         reqHeader.append('Content-Type', 'text/json');
         const saveInfoHeader = {
@@ -93,6 +96,45 @@ const CardComponent = () => {
             })
         };
         ApiCall('/api/v1/saveVisitorInfo', saveInfoHeader);
+    }
+
+    const saveUserProfile = async () => {
+        const reqHeader = new Headers();
+        let radioId = selectedRadio === "ug" ? 1 : selectedRadio === "pg" ? 2 : 3;
+        reqHeader.append('Content-Type', 'text/json');
+        const saveProfileHeader = {
+            method: 'POST',
+            headers: reqHeader,
+            body: JSON.stringify({
+                "visitor_id": uuid,
+                "email": username,
+                "contact": mobile,
+                "working_status": radioId,
+                "start_year": startYear,
+                "end_year": endYear,
+                "working_year": exp,
+            })
+        };
+        let saveStatus = await ApiCall('/api/v1/user', saveProfileHeader);
+        if (saveStatus.success === "true") {
+            sendOtp();
+        }
+    }
+
+    const sendOtp = async () => {
+        const reqHeader = new Headers();
+        reqHeader.append('Content-Type', 'text/json');
+        const sendOtpHeader = {
+            method: 'POST',
+            headers: reqHeader,
+            body: JSON.stringify({
+                "contact": mobile,
+            })
+        };
+        let sendOtpStatus = await ApiCall('/api/v1/sendOtp', sendOtpHeader);
+        if (sendOtpStatus.status == 400) {
+            alert("User Not Exist");
+        }
     }
 
     const classes = useStyles();

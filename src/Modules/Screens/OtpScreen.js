@@ -6,6 +6,7 @@ import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
+import { ApiCall } from '../Controller/Controller';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +35,7 @@ const OtpScreen = () => {
         endYear: eyear,
         exp: xp,
         username: uname,
-        mobile: mob } = state;
+        mobile } = state;
 
  
     let otpInput = React.createRef();
@@ -70,7 +71,21 @@ const OtpScreen = () => {
     }
 
 
-
+    const sendOtp = async () => {
+        const reqHeader = new Headers();
+        reqHeader.append('Content-Type', 'text/json');
+        const sendOtpHeader = {
+            method: 'POST',
+            headers: reqHeader,
+            body: JSON.stringify({
+                "contact": mobile,
+            })
+        };
+        let sendOtpStatus = await ApiCall('/api/v1/sendOtp', sendOtpHeader);
+        if (sendOtpStatus.status == 400) {
+            alert("User Not Exist");
+        }
+    }
 
 
     return (
@@ -90,7 +105,7 @@ const OtpScreen = () => {
                     </div>
 
                     <CardActions className='button-skip'>
-                        <Button size="small">RESEND OTP</Button>
+                        <Button size="small" onClick={()=>sendOtp()}>RESEND OTP</Button>
                     </CardActions>
                 </form>
             </div >
