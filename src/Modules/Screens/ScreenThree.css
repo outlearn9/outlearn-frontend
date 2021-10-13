@@ -1,7 +1,6 @@
 .text-area-three {
-    padding: 0 2vw;
     position: relative;
-    top: 50px;
+    width: 85%;
 }
 
 .text-area-three>div {
@@ -9,7 +8,7 @@
 }
 
 .line-one>span {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
 }
 
@@ -18,12 +17,8 @@
 }
 
 .form-area {
-    /* border: 1px solid black; */
-    position: relative;
-    top: 84px;
-    width: 76%;
-    left: 11%;
-    height: 60%;
+    width: 75%;
+    margin-top: 20px;
 }
 
 .MuiInput-underline:before {
@@ -73,6 +68,9 @@
 
 .MuiSelect-selectMenu {
     background: #F9F9FB !important;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 13px !important;
 }
 
 .leg-text {
@@ -93,3 +91,6 @@
 .MuiMenu-paper{
     max-height: calc(100% - 60%) !important;
 }
+
+
+

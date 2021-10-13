@@ -17,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
         background: '#5F22E0',
         borderRadius: 0,
-        height: '1vh'
+        display: 'flex',
+        padding: '0px 5vw;',
+        alignItems: 'center',
+        justifyContent: 'space-between'
     },
 }));
 
@@ -33,18 +36,23 @@ const Header = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <div className='app-name'>Outlearn</div>
+                        <div className='app-name'><a href="/">Outlearn</a></div>
 
-                        <div className='search-container'>
+                        {/* <div className='search-container'>
                             <span>
                                 O
                             </span>
                             <input />
-                        </div>
+                        </div> */}
 
+                        <div className="right-nav-wrap">
                         <div className='user-name'>
                             <span>A</span>
+                            
                         </div>
+                            <p className="logout-btn">Logout</p>
+                        </div>
+
                     </Paper>
                 </Grid>
             </Grid>

@@ -11,6 +11,11 @@ const initialState = {
     username : '',
     mobile:'',
     switchHome :false,
+    scrOneOpt:[],
+    scrOneOptSelected:{},
+    scrTwoOpt:[],
+    scrTwoOptSelected:{},
+    uuid:'',
 };
 
 

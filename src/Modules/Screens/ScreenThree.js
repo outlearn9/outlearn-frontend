@@ -131,15 +131,15 @@ const ScreenThree = () => {
                 </div>
             </div>
             <div className="form-area">
-                <form className={classes.root} noValidate autoComplete="off">
+                <form className={classes.root} validate autoComplete="off">
                     <div className="input-area">
-                        <div className="input-legends">Name</div>
-                        <Input ref={usernameInput} placeholder="Type Name" onChange={() => handleUserChange()} inputProps={{ 'aria-label': 'description', 'value': username }} />
+                        <div className="input-legends">Email</div>
+                        <Input ref={usernameInput} placeholder="Type Email" onChange={() => handleUserChange()} inputProps={{ 'aria-label': 'description', 'value': username }}/>
                     </div>
                     <div className="input-area">
                         <div className="input-legends">Mobile<span>*You will recieve a verification code</span>
                         </div>
-                        <Input ref={mobileInput} placeholder="+91 | Mobile Number" onChange={() => handleMobileChange()} inputProps={{ 'aria-label': 'description', 'value': mobile }} />
+                        <Input ref={mobileInput} placeholder="+91 | Mobile Number" onChange={() => handleMobileChange()} inputProps={{ 'aria-label': 'description', 'value': mobile }}  />
                     </div>
 
                     <div className="input-area">
@@ -201,9 +201,9 @@ const ScreenThree = () => {
                                         onChange={handleChangeStart}
                                     >
                                         {
-                                            yearArr.map((count) => {
+                                            yearArr.map((count, index) => {
                                                 return (
-                                                    <MenuItem value={count}>
+                                                    <MenuItem key={index} value={count}>
                                                         <em>{count}</em>
                                                     </MenuItem>
                                                 )
@@ -229,9 +229,9 @@ const ScreenThree = () => {
                                         onChange={handleChangeEnd}
                                     >
                                         {
-                                            yearArr.map((count) => {
+                                            yearArr.map((count, index) => {
                                                 return (
-                                                    <MenuItem value={count}>
+                                                    <MenuItem key={index} value={count}>
                                                         <em>{count}</em>
                                                     </MenuItem>
                                                 )

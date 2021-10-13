@@ -2,7 +2,6 @@
     position: relative;
     top: 2vh;
     width: 204px;
-    left: 16vw;
 }
 
 .text-area-two {
@@ -61,3 +60,7 @@
     font-weight: 700;
     cursor: pointer;
 }
+
+.text-area-two{
+    text-align: center;
+  }

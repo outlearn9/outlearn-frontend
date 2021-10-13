@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './ScreenOne.css';
 import Img1 from '../../Assets/SVG/img1.svg';
-import { scrOne } from '../Metadata/Constants';
 import Button from '@material-ui/core/Button';
-const ScreenOne = () => {
+import { Context } from '../../Store/Store'
 
+const ScreenOne = () => {
+    const [state, dispatch] = useContext(Context);
+    const { scrOneOpt,scrOneOptSelected } = state;
+    const [selectedOpt, setSelectedOpt] = useState(scrOneOptSelected);
+
+
+    const handleSelection = (item) => {
+            setSelectedOpt(item); 
+    }
+
+    useEffect(()=>{
+        dispatch({ type: 'SET_SCRONE_OPT_SELECTED', scrOneOptSelected: selectedOpt })
+    },[selectedOpt])
     return (
         <>
             <div className='img1'>
@@ -15,7 +27,7 @@ const ScreenOne = () => {
                     <span>Please tell us your interests to help us guide you better.</span>
                 </div>
                 <div className="line-two">
-                    <span>Which <span>specialisation</span> are you most <br /> intersted in?</span>
+                    <span>Which <span>specialisation</span> are you most intersted in?</span>
                 </div>
                 <div className="line-three">
                     <span>
@@ -23,16 +35,16 @@ const ScreenOne = () => {
                     </span>
                 </div>
                 <div className="opt-area">
-                    {scrOne.map((itm,index) => {
+                    {scrOneOpt.map((itm) => {
                         return (
-                            <Button variant="contained" key={index} color="primary" className={itm.selected ? "opt-button opt-selected" : "opt-button "}>
-                                {itm.option}
+                            <Button variant="contained" key={itm.id} color="primary" onClick={() => handleSelection(itm)} className={selectedOpt && selectedOpt.id === itm.id ? "opt-button opt-selected" : "opt-button "}>
+                                {itm.speicialization}
                             </Button>
                         )
 
                     })}
-
-                    <span className="add-more">+add more</span>
+                    {/* 
+                    <span className="add-more">+add more</span> */}
 
                 </div>
             </div>

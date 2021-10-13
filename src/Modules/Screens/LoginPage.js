@@ -28,50 +28,24 @@ const useStyles = makeStyles((theme) => ({
 const OtpScreen = () => {
     const [state, dispatch] = useContext(Context);
 
-    const { pageNo: pgNo,
-        selectedRadio,
-        startYear: syear,
-        endYear: eyear,
-        exp: xp,
-        username: uname,
-        mobile: mob } = state;
-
- 
-    let otpInput = React.createRef();
+    const { mobile: mob } = state;
+    let mobileInput = React.createRef();
  
     const [otp, setOtp] = useState('');
-    const classes = useStyles();
+    const [mobile, setMobile] = useState(mob);
 
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_PAGE', pageNo: pageNo })
-    // }, [pageNo]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_SELECTED_RADIO', selectedRadio: selectedValue })
-    // }, [selectedValue]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_START_YEAR', startYear: startYear })
-    // }, [startYear]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_END_YEAR', endYear: endYear })
-    // }, [endYear]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_EXP', exp: exp })
-    // }, [exp]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_USERNAME', username: username })
-    // }, [username])
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_MOBILE', mobile: mobile })
-    // }, [mobile])
+    useEffect(() => {
+        dispatch({ type: 'SET_MOBILE', mobile: mobile })
+    }, [mobile])
+
+    const classes = useStyles();
 
 
     const handleOtpChange = () => {
-        setOtp(otpInput.current.children[0].value);
+        setOtp(mobileInput.current.children[0].value);
+        setMobile(mobileInput.current.children[0].value);
+        console.log(state);
     }
-
-
-
-
 
     return (
         <>
@@ -86,7 +60,7 @@ const OtpScreen = () => {
                     <div className="input-area">
                         <div className="input-legends">Mobile No.
                         </div>
-                        <Input ref={otpInput} placeholder="+91  |  Enter Mobile Number" onChange={() => handleOtpChange()} inputProps={{ 'aria-label': 'description', 'value': otp }} />
+                        <Input ref={mobileInput} placeholder="+91  |  Enter Mobile Number" onChange={() => handleOtpChange()} inputProps={{ 'aria-label': 'description', 'value': otp }} />
                     </div>
 
                     {/* <CardActions className='button-skip'>

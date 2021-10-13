@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './ScreenTwo.css';
 import Img3 from '../../Assets/SVG/Img3.svg';
-import { scrTwo } from '../Metadata/Constants';
 import Button from '@material-ui/core/Button';
+import { Context } from '../../Store/Store'
 const ScreenTwo = () => {
+    const [state, dispatch] = useContext(Context);
+    const { scrTwoOpt,scrTwoOptSelected } = state;
+    const [selectedOpt, setSelectedOpt] = useState(scrTwoOptSelected);
 
+    const handleSelection = (item) => {
+            setSelectedOpt(item); 
+    }
+
+    useEffect(()=>{
+        dispatch({ type: 'SET_SCRTWO_OPT_SELECTED', scrTwoOptSelected: selectedOpt })
+    },[selectedOpt])
     return (
         <>
             <div className='img1'>
@@ -24,10 +34,10 @@ const ScreenTwo = () => {
                     </span>
                 </div> */}
                 <div className="opt-area-two">
-                    {scrTwo.map(itm => {
+                    {scrTwoOpt.map((itm) => {
                         return (
-                            <Button variant="contained" color="primary" className={itm.selected ? "opt-button opt-selected" : "opt-button "}>
-                                {itm.option}
+                            <Button variant="contained" key={itm.id} color="primary" onClick={() => handleSelection(itm)} className={selectedOpt && selectedOpt.id === itm.id ? "opt-button opt-selected" : "opt-button "}>
+                                {itm.name}
                             </Button>
                         )
 
