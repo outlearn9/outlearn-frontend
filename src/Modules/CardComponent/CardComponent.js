@@ -44,11 +44,14 @@ const CardComponent = () => {
     }, [])
 
     useEffect(() => {
+        const RegexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const RegexMob = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
+
         if (pageNo === 1 && !Object.keys(scrOneOptSelected).length) {
             setIsDisabled(true);
         } else if (pageNo === 2 && !Object.keys(scrTwoOptSelected).length) {
             setIsDisabled(true);
-        } else if (pageNo === 3 && !username && !mobile) {
+        } else if (pageNo === 3 &&( !username || !mobile || !RegexEmail.test(username) || !RegexMob.test(mobile))) {
             setIsDisabled(true);
         } else {
             setIsDisabled(false);
