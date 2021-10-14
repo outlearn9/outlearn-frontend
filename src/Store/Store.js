@@ -16,6 +16,7 @@ const initialState = {
     scrTwoOpt:[],
     scrTwoOptSelected:{},
     uuid:'',
+    otp:'',
 };
 
 

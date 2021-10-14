@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 
 const CardComponent = () => {
     const [state, dispatch] = useContext(Context);
-    const { pageNo: page, username, selectedRadio, startYear, endYear, exp, mobile, switchHome, uuid, scrOneOptSelected, scrTwoOptSelected } = state;
+    const { pageNo: page, username, otp, selectedRadio, startYear, endYear, exp, mobile, switchHome, uuid, scrOneOptSelected, scrTwoOptSelected } = state;
     const [pageNo, setPageNo] = useState(page);
     const [isDisabled, setIsDisabled] = useState(false);
     const [homeSwitch, setHomeSwitch] = useState(switchHome);
@@ -51,16 +51,26 @@ const CardComponent = () => {
     useEffect(() => {
         const RegexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const RegexMob = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
+        const RegexOtp = /^[0-9]{4,6}$/;
 
         if (pageNo === 1 && !Object.keys(scrOneOptSelected).length) {
             setIsDisabled(true);
         } else if (pageNo === 2 && !Object.keys(scrTwoOptSelected).length) {
             setIsDisabled(true);
-        } else if (pageNo === 3 &&( !username || !mobile || !RegexEmail.test(username) || !RegexMob.test(mobile))) {
+        } else if (pageNo === 3 && (!username || !mobile || !RegexEmail.test(username) || !RegexMob.test(mobile))) {
             setIsDisabled(true);
         } else {
             setIsDisabled(false);
         }
+
+        if(window.location.pathname.match('/verify-otp') || pageNo === 4){
+            if (!RegexOtp.test(otp)) {
+                setIsDisabled(true);
+            }else{
+                setIsDisabled(false) 
+            }
+        }
+        
     })
 
 
@@ -82,7 +92,7 @@ const CardComponent = () => {
             headers: reqHeader,
             body: JSON.stringify({
                 "otp": '1234',
-                "contact": state.mobile?state.mobile:localStorage.getItem('mobile'),
+                "contact": state.mobile ? state.mobile : localStorage.getItem('mobile'),
             })
         };
         let response = await ApiCall('/api/v1/verifyOtp', saveProfileHeader);
@@ -90,7 +100,7 @@ const CardComponent = () => {
             console.log(response);
             localStorage.setItem('token', response.data.token)
             window.location.pathname = '/Home';
-        } else if (response.success === "false"){
+        } else if (response.success === "false") {
             alert(response.message)
         }
     }
@@ -107,11 +117,11 @@ const CardComponent = () => {
             method: 'POST',
             headers: reqHeader,
             body: JSON.stringify({
-                "contact": state.mobile?state.mobile:localStorage.getItem('mobile'),
+                "contact": state.mobile ? state.mobile : localStorage.getItem('mobile'),
             })
         };
         let sendOtpStatus = await ApiCall('/api/v1/sendOtp', sendOtpHeader);
-        if(sendOtpStatus.status == 201){
+        if (sendOtpStatus.status == 201) {
             console.log(sendOtpStatus);
             localStorage.setItem('mobile', state.mobile)
             window.location.pathname = '/verify-otp';
@@ -169,7 +179,7 @@ const CardComponent = () => {
         if (saveStatus.success === "true") {
             setTimeout(() => {
                 sendOtp();
-            },3000);
+            }, 3000);
         }
     }
 
@@ -180,7 +190,7 @@ const CardComponent = () => {
             method: 'POST',
             headers: reqHeader,
             body: JSON.stringify({
-                "contact": mobile?mobile:localStorage.getItem('mobile'),
+                "contact": mobile ? mobile : localStorage.getItem('mobile'),
             })
         };
         let sendOtpStatus = await ApiCall('/api/v1/sendOtp', sendOtpHeader);
@@ -225,7 +235,7 @@ const CardComponent = () => {
                                 <Button size="small" onClick={() => pageNo > 1 ? setPageNo(pageNo - 1) : ''}>Back</Button>
                             </CardActions>
                             <CardActions className='button-skip'>
-                               {state.pageNo > 2 ? <Button onClick={() => handelSkip()}  size="small">Skip</Button> : ''} 
+                                {state.pageNo > 2 ? <Button onClick={() => handelSkip()} size="small">Skip</Button> : ''}
                             </CardActions>
                         </> : ''}
 
@@ -242,7 +252,7 @@ const CardComponent = () => {
                         {window.location.pathname.match('/login') ?
                             <LoginPage /> : ''
                         }
-                         {window.location.pathname.match('/verify-otp') ?
+                        {window.location.pathname.match('/verify-otp') ?
                             <OtpVerifyPage /> : ''
                         }
                         {!window.location.pathname.match('/verify-otp') && !window.location.pathname.match('/login') ?
@@ -259,12 +269,12 @@ const CardComponent = () => {
 
                         {
                             window.location.pathname.match('/verify-otp') ?
-                                <Button variant="contained" color="primary" className="cont-button" onClick={() => handleOtpSubmit()}>
+                                <Button variant="contained" color="primary" className="cont-button" onClick={() => handleOtpSubmit()} disabled={isDisabled}>
                                     Submit
                                 </Button> : ''
                         }
-                        { !window.location.pathname.match('/verify-otp') && !window.location.pathname.match('/login') ?
-                                <Button variant="contained" color="primary" className="cont-button" onClick={() => handleSubmitClick()} disabled={isDisabled}>
+                        {!window.location.pathname.match('/verify-otp') && !window.location.pathname.match('/login') ?
+                            <Button variant="contained" color="primary" className="cont-button" onClick={() => handleSubmitClick()} disabled={isDisabled}>
                                 {pageNo < 4 ? 'Continue' :
                                     'Submit'}
                             </Button> : ''
