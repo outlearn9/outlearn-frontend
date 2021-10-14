@@ -11,4 +11,4 @@
 
 4: Run 'npm install' from terminal
 
-5: Run 'npm start'
+5: Run 'npm start';
