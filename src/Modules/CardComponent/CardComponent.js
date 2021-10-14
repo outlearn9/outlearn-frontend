@@ -14,6 +14,7 @@ import ScreenThree from '../Screens/ScreenThree';
 import LoginPage from '../Screens/LoginPage';
 import { v4 as uuidv4 } from 'uuid';
 import { ApiCall } from '../Controller/Controller';
+import OtpVerifyPage from '../Screens/OtpVerifyPage';
 
 
 const useStyles = makeStyles({
@@ -44,6 +45,10 @@ const CardComponent = () => {
     }, [])
 
     useEffect(() => {
+        dispatch({ type: 'SET_MOBILE', mobile: mobile })
+    }, [mobile])
+
+    useEffect(() => {
         const RegexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const RegexMob = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
 
@@ -58,6 +63,7 @@ const CardComponent = () => {
         }
     })
 
+
     useEffect(() => {
         dispatch({ type: 'SET_PAGE', pageNo: pageNo })
     }, [pageNo]);
@@ -66,13 +72,54 @@ const CardComponent = () => {
         dispatch({ type: 'SET_SWITCH_HOME', switchHome: homeSwitch })
     }, [homeSwitch]);
 
-    const handleOtpSubmit = () => {
-        setHomeSwitch(true);
+    const handleOtpSubmit = async () => {
+        // setHomeSwitch(true);
+        console.log(state);
+        const reqHeader = new Headers();
+        reqHeader.append('Content-Type', 'text/json');
+        const saveProfileHeader = {
+            method: 'POST',
+            headers: reqHeader,
+            body: JSON.stringify({
+                "otp": '1234',
+                "contact": state.mobile?state.mobile:localStorage.getItem('mobile'),
+            })
+        };
+        let response = await ApiCall('/api/v1/verifyOtp', saveProfileHeader);
+        if (response.success === "true") {
+            console.log(response);
+            localStorage.setItem('token', response.data.token)
+            window.location.pathname = '/Home';
+        } else if (response.success === "false"){
+            alert(response.message)
+        }
+    }
+
+    const handelSkip = () => {
         window.location.pathname = '/Home';
     }
 
-    const handleLogin = () => {
-
+    const handleLogin = async () => {
+        console.log(state);
+        const reqHeader = new Headers();
+        reqHeader.append('Content-Type', 'text/json');
+        const sendOtpHeader = {
+            method: 'POST',
+            headers: reqHeader,
+            body: JSON.stringify({
+                "contact": state.mobile?state.mobile:localStorage.getItem('mobile'),
+            })
+        };
+        let sendOtpStatus = await ApiCall('/api/v1/sendOtp', sendOtpHeader);
+        if(sendOtpStatus.status == 201){
+            console.log(sendOtpStatus);
+            localStorage.setItem('mobile', state.mobile)
+            window.location.pathname = '/verify-otp';
+            // setMobile(mobileInput.current.children[0].value);
+        }
+        if (sendOtpStatus.status == 400) {
+            alert("User Not Exist");
+        }
     };
 
     const handleSubmitClick = () => {
@@ -120,7 +167,9 @@ const CardComponent = () => {
         };
         let saveStatus = await ApiCall('/api/v1/user', saveProfileHeader);
         if (saveStatus.success === "true") {
-            sendOtp();
+            setTimeout(() => {
+                sendOtp();
+            },3000);
         }
     }
 
@@ -131,7 +180,7 @@ const CardComponent = () => {
             method: 'POST',
             headers: reqHeader,
             body: JSON.stringify({
-                "contact": mobile,
+                "contact": mobile?mobile:localStorage.getItem('mobile'),
             })
         };
         let sendOtpStatus = await ApiCall('/api/v1/sendOtp', sendOtpHeader);
@@ -176,7 +225,7 @@ const CardComponent = () => {
                                 <Button size="small" onClick={() => pageNo > 1 ? setPageNo(pageNo - 1) : ''}>Back</Button>
                             </CardActions>
                             <CardActions className='button-skip'>
-                                <Button size="small">Skip</Button>
+                               {state.pageNo > 2 ? <Button onClick={() => handelSkip()}  size="small">Skip</Button> : ''} 
                             </CardActions>
                         </> : ''}
 
@@ -190,9 +239,14 @@ const CardComponent = () => {
                         <img src={Img2} alt='img 2' />
                     </div>
                     <div className='body-component'>
-                        {!window.location.pathname.match('/login') ?
-                            getPage() :
-                            <LoginPage />
+                        {window.location.pathname.match('/login') ?
+                            <LoginPage /> : ''
+                        }
+                         {window.location.pathname.match('/verify-otp') ?
+                            <OtpVerifyPage /> : ''
+                        }
+                        {!window.location.pathname.match('/verify-otp') && !window.location.pathname.match('/login') ?
+                            getPage() : ''
                         }
                     </div>
                     <div className='bottom-buttons'>
@@ -200,15 +254,24 @@ const CardComponent = () => {
                             window.location.pathname.match('/login') ?
                                 <Button variant="contained" color="primary" className="cont-button" onClick={() => handleLogin()}>
                                     Log In
-                                </Button> :
+                                </Button> : ''
+                        }
+
+                        {
+                            window.location.pathname.match('/verify-otp') ?
+                                <Button variant="contained" color="primary" className="cont-button" onClick={() => handleOtpSubmit()}>
+                                    Submit
+                                </Button> : ''
+                        }
+                        { !window.location.pathname.match('/verify-otp') && !window.location.pathname.match('/login') ?
                                 <Button variant="contained" color="primary" className="cont-button" onClick={() => handleSubmitClick()} disabled={isDisabled}>
-                                    {pageNo < 4 ? 'Continue' :
-                                        'Submit'}
-                                </Button>
+                                {pageNo < 4 ? 'Continue' :
+                                    'Submit'}
+                            </Button> : ''
                         }
 
 
-                        {pageNo < 4 && !window.location.pathname.match('/login') ? <div className='pagination-block'>
+                        {pageNo < 4 && !window.location.pathname.match('/login') && !window.location.pathname.match('/verify-otp') ? <div className='pagination-block'>
                             <span>{pageNo}/3</span>
                         </div> : ''}
 

@@ -71,3 +71,7 @@ body{
     margin-left: 20px;
     cursor: pointer;
 }
+a{
+    color: white;
+    text-decoration: none;
+}

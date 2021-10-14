@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const OtpScreen = () => {
+const OtpScreenLogin = () => {
     const [state, dispatch] = useContext(Context);
 
     const { pageNo: pgNo,
@@ -117,4 +117,4 @@ const OtpScreen = () => {
 
 }
 
-export default OtpScreen;
+export default OtpScreenLogin;
