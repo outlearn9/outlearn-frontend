@@ -65,6 +65,11 @@ const Reducer = (state, action) => {
                 ...state,
                 uuid: action.uuid
             };
+        case 'SET_OTP':
+            return {
+                ...state,
+                otp: action.otp
+            };
         default:
             return state;
     }

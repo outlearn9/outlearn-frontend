@@ -70,6 +70,10 @@ const OtpScreenLogin = () => {
         setOtp(otpInput.current.children[0].value);
     }
 
+    useEffect(()=>{
+        dispatch({ type: 'SET_OTP', otp: otp });
+    },[otp])
+
 
     const sendOtp = async () => {
         const reqHeader = new Headers();

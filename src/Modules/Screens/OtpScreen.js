@@ -68,7 +68,12 @@ const OtpScreen = () => {
 
     const handleOtpChange = () => {
         setOtp(otpInput.current.children[0].value);
+        console.warn(otp);
     }
+
+    useEffect(()=>{
+        dispatch({ type: 'SET_OTP', otp: otp });
+    },[otp])
 
 
     const sendOtp = async () => {
