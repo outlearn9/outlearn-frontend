@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Header = () => {
-
+    const isAuthenticated = localStorage.getItem('token')
 
     const classes = useStyles();
 
@@ -36,7 +36,7 @@ const Header = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <div className='app-name'><a href="/">Outlearn</a></div>
+                        <div className='app-name m-2'><a href="/">Outlearn</a></div>
 
                         {/* <div className='search-container'>
                             <span>
@@ -46,10 +46,10 @@ const Header = () => {
                         </div> */}
 
                         <div className="right-nav-wrap">
-                        <div className='user-name'>
-                            <span>A</span>
-                            
-                        </div>
+                            <div className='user-name'>
+                                <span>A</span>
+                                
+                            </div>
                             <p className="logout-btn">Logout</p>
                         </div>
 

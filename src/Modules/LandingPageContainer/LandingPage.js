@@ -7,12 +7,14 @@ import SubNavbar from './Components/SubNavbar';
 
 const LandingPage = () => {
 
+  const greeting = "Hi Ankita Trivedi"
+
   return (
     <>
       <Header />
       <div className="bg-white pb-5">
         <SubNavbar />
-        <LandingPageContainer />
+        <LandingPageContainer greeting={greeting} />
       </div>
       <Footer />
     </>

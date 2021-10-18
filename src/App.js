@@ -14,9 +14,9 @@ function App() {
     <>
       <BrowserRouter>
         <Store>
-          <Route path="/onboarding" component={Home} />
-          <Route path="/login" component={Home} />
-          <Route path="/landing" component={LandingPage} />
+          <Route exact strict path="/onboarding" component={Home} />
+          <Route exact strict path="/login" component={Home} />
+          <Route exact strict path="/" component={LandingPage} />
 
         </Store>
       </BrowserRouter>
