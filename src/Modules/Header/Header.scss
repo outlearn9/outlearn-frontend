@@ -36,7 +36,8 @@ body{
 
 
 .user-name{
-    height: 12px;
+    height: 28px;
+    width: 28px;
     padding: 8px;
     background: #FFDEAC;
     border-radius: 13px;
@@ -63,7 +64,7 @@ body{
 .right-nav-wrap{
     display: flex;
     align-items: center;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 .logout-btn{
@@ -74,4 +75,7 @@ body{
 a{
     color: white;
     text-decoration: none;
+    &:hover{
+        color: white;
+    }
 }

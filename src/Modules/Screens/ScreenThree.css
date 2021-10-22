@@ -1,6 +1,7 @@
 .text-area-three {
     position: relative;
     width: 85%;
+    transform: translateY(-130px);
 }
 
 .text-area-three>div {
@@ -19,6 +20,7 @@
 .form-area {
     width: 75%;
     margin-top: 20px;
+    transform: translateY(-100px);
 }
 
 .MuiInput-underline:before {
@@ -56,8 +58,9 @@
 }
 
 .input-area {
-    width: 96% !important;
+    width: 100% !important;
     margin-bottom: 0px !important;
+    padding: 2px 0 !important;
 }
 
 .input-area-half {
@@ -79,9 +82,6 @@
     font-size: 10px;
 }
 
-.input-area:nth-child(3) {
-    margin: -12px 8px !important;
-}
 
 .radio-container span {
     transform: scale(.8);
@@ -90,6 +90,12 @@
 
 .MuiMenu-paper{
     max-height: calc(100% - 60%) !important;
+}
+
+.leg-text img{
+    height: 13px;
+    width: auto;
+    margin-right: 4px;
 }
 
 

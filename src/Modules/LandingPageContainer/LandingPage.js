@@ -7,7 +7,7 @@ import SubNavbar from './Components/SubNavbar';
 
 const LandingPage = () => {
 
-  const greeting = "Hi Ankita Trivedi"
+  const greeting = "Hi Ankita Trived"
 
   return (
     <>

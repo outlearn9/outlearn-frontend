@@ -103,7 +103,7 @@ const OtpScreenLogin = () => {
                     </span>
                 </div>
             </div>
-            <div className="form-area fa-otp">
+            <div className="form-area fa-otp otp-wrap">
                 <form className={classes.root} noValidate autoComplete="off">
                     <div className="input-area">
                         <div className="input-legends">OTP

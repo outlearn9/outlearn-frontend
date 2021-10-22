@@ -2,11 +2,11 @@
     width: 628px;
     margin: auto;
     position: relative;
-    top: 10vh;
+    top: 5vh;
 }
 
 .card-content {
-    height: 500px;
+    height: 600px;
 }
 
 .top-buttons {
@@ -37,22 +37,23 @@
 }
 
 .body-component {
-    height: 85%;
-    top: 0%;
+    height: 400px;
+    /* top: 87px; */
     display: flex;
-    transform: translateY(-150px);
+    /* transform: translateY(-150px); */
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0 2vw;
 }
 
 .bottom-buttons {
-    /* border: 1px solid blue; */
     position: absolute;
     width: 100%;
-    height: 14%;
-    margin: 0 -16px;
-    bottom: 0;
+    /* height: 14%; */
+    margin: 0px -10px;
+    bottom: 5px;
+    flex-direction: column;
 }
 
 .bottom-buttons a {
@@ -60,19 +61,11 @@
     text-decoration: none;
 }
 
-.cont-button {
-    background: #5F22E0;
-    width: 25%;
-    border-radius: 100vw !important;
-    font-size: 11px !important;
-    position: relative !important;
-    left: 38% !important;
-    text-transform: none !important;
-}
+
 
 .pagination-block {
-    position: relative;
-    left: 49%;
+    right: 20px;
     font-size: 13px;
-    padding-top: 5px;
+    padding: 12px;
+    width: 100%;
 }

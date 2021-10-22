@@ -151,6 +151,42 @@
     }
 }
 
+.videos-card-wrapper {
+    background         : url('../../Assets/Images/learn.png');
+    min-width          : 240px !important;
+    box-shadow         : 0 0 1px grey;
+    border-radius      : 12px;
+    padding            : 4px 10px;
+    height             : 150px;
+    margin             : 0 20px 0 5px;
+    background-position: center;
+    background-size    : cover;
+    background-repeat  : no-repeat;
+    color              : white;
+    display            : flex;
+    flex-direction     : column;
+    justify-content    : flex-end;
+
+    .videos-card-footer {
+        display        : flex;
+        align-items    : flex-end;
+        justify-content: space-between;
+
+        h5 {
+            font-weight: bold;
+            font-size  : 14px;
+            line-height: 19px;
+        }
+
+        h6 {
+            font-weight: normal;
+            font-size  : 12px;
+            line-height: 16px;
+            opacity    : 0.8;
+        }
+    }
+}
+
 .horizontal-loop {
     display   : flex;
     overflow-x: scroll;

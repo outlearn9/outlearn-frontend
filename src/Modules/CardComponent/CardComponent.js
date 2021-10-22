@@ -63,14 +63,14 @@ const CardComponent = () => {
             setIsDisabled(false);
         }
 
-        if(window.location.pathname.match('/verify-otp') || pageNo === 4){
+        if (window.location.pathname.match('/verify-otp') || pageNo === 4) {
             if (!RegexOtp.test(otp)) {
                 setIsDisabled(true);
-            }else{
-                setIsDisabled(false) 
+            } else {
+                setIsDisabled(false)
             }
         }
-        
+
     })
 
 
@@ -99,14 +99,14 @@ const CardComponent = () => {
         if (response.success === "true") {
             console.log(response);
             localStorage.setItem('token', response.data.token)
-            window.location.pathname = '/Home';
+            window.location.pathname = '/';
         } else if (response.success === "false") {
             alert(response.message)
         }
     }
 
     const handelSkip = () => {
-        window.location.pathname = '/Home';
+        window.location.pathname = '/';
     }
 
     const handleLogin = async () => {
@@ -235,7 +235,7 @@ const CardComponent = () => {
                                 <Button size="small" onClick={() => pageNo > 1 ? setPageNo(pageNo - 1) : ''}>Back</Button>
                             </CardActions>
                             <CardActions className='button-skip'>
-                                {state.pageNo > 2 ? <Button onClick={() => handelSkip()} size="small">Skip</Button> : ''}
+                                {state.pageNo > 1 ? <Button onClick={() => handelSkip()} size="small">Skip</Button> : ''}
                             </CardActions>
                         </> : ''}
 
@@ -245,7 +245,7 @@ const CardComponent = () => {
                 }
 
                 <CardContent className='card-content'>
-                    <div style={{ margin: -16 }}>
+                    <div className="header-img" style={{ margin: -16 }}>
                         <img src={Img2} alt='img 2' />
                     </div>
                     <div className='body-component'>
@@ -259,10 +259,10 @@ const CardComponent = () => {
                             getPage() : ''
                         }
                     </div>
-                    <div className='bottom-buttons'>
+                    <div className='bottom-buttons flexbox'>
                         {
                             window.location.pathname.match('/login') ?
-                                <Button variant="contained" color="primary" className="cont-button" onClick={() => handleLogin()}>
+                                <Button variant="contained" color="primary" size="large" className="cont-button" onClick={() => handleLogin()}>
                                     Log In
                                 </Button> : ''
                         }
@@ -280,13 +280,22 @@ const CardComponent = () => {
                             </Button> : ''
                         }
 
+                        {
+                            window.location.pathname.match('/login') ?
+                                <div className="flexbox">
+                                    <CardActions className='button-skip'>
+                                        <Button size="small" onClick={() => window.location.pathname = '/onboarding'}>Sign up</Button>
+                                    </CardActions>
+                                </div>
+                                : ''
+                        }
 
-                        {pageNo < 4 && !window.location.pathname.match('/login') && !window.location.pathname.match('/verify-otp') ? <div className='pagination-block'>
+
+                        {pageNo < 4 && !window.location.pathname.match('/login') && !window.location.pathname.match('/verify-otp') ? <div className='pagination-block flexbox'>
                             <span>{pageNo}/3</span>
                         </div> : ''}
 
                     </div>
-
 
                 </CardContent>
 

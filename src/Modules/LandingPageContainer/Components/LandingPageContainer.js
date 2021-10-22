@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import bgyellow from '../../../Assets/SVG/bgYellow.svg';
 import courseImg from '../../../Assets/Images/course.png';
+import learnImg from '../../../Assets/Images/learn.png';
+
 import MyPreferences from './MyPreferences';
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@material-ui/core'
@@ -93,6 +95,25 @@ const LandingPageContainer = (props) => {
                                     <div className="courses-card-end mt-2">
                                         <span>Rs 4500</span>  <p>Beginner | 5 * (42k)</p>
                                     </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div className="horizontal-head mt-5"><h2 className="m-2">Videos to learn</h2></div>
+                <div className="horizontal-loop">
+                    {
+                        ary.map(element => (
+                            <div className="videos-card-wrapper">
+                                <div className="videos-card-footer">
+                                    <div className="pb-3">
+                                        <h5>Master AI and ML Skills</h5>
+                                        {/* <h6> Anurag Patel</h6> */}
+                                    </div>
+                                    {/* <div>
+                                        <h6> 30 Sep, 5:30pm</h6>
+                                    </div> */}
                                 </div>
                             </div>
                         ))

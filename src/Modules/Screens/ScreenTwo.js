@@ -20,7 +20,7 @@ const ScreenTwo = () => {
             <div className='img1'>
                 <img src={Img3} alt='img 1' />
             </div>
-            <div className="text-area-two">
+            <div className="text-area">
                 {/* <div className="line-first">
                     <span>Please tell us your interests to help us guide you better.</span>
                 </div> */}
@@ -33,7 +33,7 @@ const ScreenTwo = () => {
                         You can select multiple options
                     </span>
                 </div> */}
-                <div className="opt-area-two">
+                <div className="opt-area-two mt-4">
                     {scrTwoOpt.map((itm) => {
                         return (
                             <Button variant="contained" key={itm.id} color="primary" onClick={() => handleSelection(itm)} className={selectedOpt && selectedOpt.id === itm.id ? "opt-button opt-selected" : "opt-button "}>

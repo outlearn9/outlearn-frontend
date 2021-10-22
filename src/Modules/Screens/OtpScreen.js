@@ -98,13 +98,13 @@ const OtpScreen = () => {
 
     return (
         <>
-            <div className="text-area-three transform-50">
+            <div className="text-area-three">
                 <div className="line-one">
-                    <span>Enter the code generated on your mobile device below to Log In!
+                    <span>Enter the code generated on your mobile device {state.mobile}
                     </span>
                 </div>
             </div>
-            <div className="form-area fa-otp">
+            <div className="form-area fa-otp otp-wrap">
                 <form className={classes.root} noValidate autoComplete="off">
                     <div className="input-area">
                         <div className="input-legends">OTP

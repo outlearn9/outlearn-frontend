@@ -44,7 +44,6 @@ const OtpScreen = () => {
     const handleOtpChange = () => {
         setOtp(mobileInput.current.children[0].value);
         setMobile(mobileInput.current.children[0].value);
-        console.log(state);
     }
 
     return (
@@ -55,12 +54,12 @@ const OtpScreen = () => {
                     </span>
                 </div>
             </div>
-            <div className="form-area fa-otp">
+            <div className="form-area fa-otp login-wrap">
                 <form className={classes.root} noValidate autoComplete="off">
                     <div className="input-area">
                         <div className="input-legends">Mobile No.
                         </div>
-                        <Input ref={mobileInput} placeholder="+91  |  Enter Mobile Number" onChange={() => handleOtpChange()} inputProps={{ 'aria-label': 'description', 'value': otp }} />
+                        <Input ref={mobileInput} value="+918532877445" placeholder="+91  |  Enter Mobile Number" onChange={() => handleOtpChange()} inputProps={{ 'aria-label': 'description', 'value': otp }} />
                     </div>
 
                     {/* <CardActions className='button-skip'>

@@ -136,20 +136,21 @@ const ScreenThree = () => {
                         <div className="input-legends">Email</div>
                         <Input ref={usernameInput} placeholder="Type Email" onChange={() => handleUserChange()} inputProps={{ 'aria-label': 'description', 'value': username }}/>
                     </div>
-                    <div className="input-area">
+                    <div className="input-area mt-3">
                         <div className="input-legends">Mobile<span>*You will recieve a verification code</span>
                         </div>
                         <Input ref={mobileInput} placeholder="+91 | Mobile Number" onChange={() => handleMobileChange()} inputProps={{ 'aria-label': 'description', 'value': mobile }}  />
                     </div>
 
-                    <div className="input-area">
+                    <div className="input-area m-0">
                         <Checkbox
                             style={{
                                 transform: "scale(.7)",
                             }}
+                            checked="true"
                             color="primary"
                             inputProps={{ 'aria-label': 'secondary checkbox' }}
-                        /> <span className="leg-text"> This is my whatsapp number
+                        /> <span className="leg-text"> <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="" srcset="" /> This is my whatsapp number
                         </span>
                     </div>
 
