@@ -1,16 +1,5 @@
-.img1 img {
-    width: 204px;
-}
 
-.img1{
-    transform: translateY(-20px);
-}
 
-.text-area {
-    padding: 0 20px;
-    position: relative;
-    bottom: 27px;
-}
 
 .text-area>div {
     margin: 2px 0;
@@ -37,6 +26,7 @@
 }
 
 .opt-button {
+    box-shadow: none !important;
     margin-bottom: 10px!important;
     border-radius: 100vw !important;
     font-size: 11px !important;

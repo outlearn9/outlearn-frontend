@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.css';
+import './Header.scss';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -27,8 +27,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
 
+    const isAuthenticated = localStorage.getItem('token')
 
     const classes = useStyles();
+
+    const onLogout = () => {
+        localStorage.removeItem('token')
+        window.location.pathname = '/login'
+    } 
 
     return (
 
@@ -36,7 +42,7 @@ const Header = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <div className='app-name'><a href="/">Outlearn</a></div>
+                        <div className='app-name m-2'><a href="/">Outlearn</a></div>
 
                         {/* <div className='search-container'>
                             <span>
@@ -45,13 +51,18 @@ const Header = () => {
                             <input />
                         </div> */}
 
-                        <div className="right-nav-wrap">
-                        <div className='user-name'>
-                            <span>A</span>
-                            
-                        </div>
-                            <p className="logout-btn">Logout</p>
-                        </div>
+                        {isAuthenticated ? <div className="right-nav-wrap">
+                            <div className='user-name'>
+                                <span>A</span>
+
+                            </div>
+                             <p onClick={() => onLogout()} className="logout-btn">Logout</p>
+                            </div> :
+                            <div className="right-nav-wrap" onClick={() => window.location.pathname = '/login'}>
+                                <p className="logout-btn">Login / Register</p>
+                            </div>}
+
+
 
                     </Paper>
                 </Grid>

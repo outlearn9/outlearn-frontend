@@ -4,8 +4,8 @@ import './ScreenThree.css';
 import './LoginPage.css';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +31,7 @@ const OtpScreen = () => {
     const { mobile: mob } = state;
     let mobileInput = React.createRef();
  
+    const [value, setValue] = useState()
     const [otp, setOtp] = useState('');
     const [mobile, setMobile] = useState(mob);
 
@@ -44,7 +45,6 @@ const OtpScreen = () => {
     const handleOtpChange = () => {
         setOtp(mobileInput.current.children[0].value);
         setMobile(mobileInput.current.children[0].value);
-        console.log(state);
     }
 
     return (
@@ -55,13 +55,20 @@ const OtpScreen = () => {
                     </span>
                 </div>
             </div>
-            <div className="form-area fa-otp">
+            <div className="form-area fa-otp login-wrap">
                 <form className={classes.root} noValidate autoComplete="off">
                     <div className="input-area">
                         <div className="input-legends">Mobile No.
                         </div>
-                        <Input ref={mobileInput} placeholder="+91  |  Enter Mobile Number" onChange={() => handleOtpChange()} inputProps={{ 'aria-label': 'description', 'value': otp }} />
+                        <PhoneInput
+                            international
+                            countryCallingCodeEditable={false}
+                            defaultCountry="IN"
+                            value={mobile}
+                            onChange={setMobile}/>
+                        {/* <Input ref={mobileInput} value="+918532877445" placeholder="+91  |  Enter Mobile Number" onChange={() => handleOtpChange()} inputProps={{ 'aria-label': 'description', 'value': otp }} /> */}
                     </div>
+  
 
                     {/* <CardActions className='button-skip'>
                         <Button size="small">RESEND OTP</Button>

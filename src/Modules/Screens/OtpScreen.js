@@ -26,8 +26,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 const OtpScreen = () => {
     const [state, dispatch] = useContext(Context);
+    const [counter, setCounter] = React.useState(10);
+
 
     const { pageNo: pgNo,
         selectedRadio,
@@ -41,29 +44,8 @@ const OtpScreen = () => {
     let otpInput = React.createRef();
  
     const [otp, setOtp] = useState('');
-    const classes = useStyles();
 
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_PAGE', pageNo: pageNo })
-    // }, [pageNo]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_SELECTED_RADIO', selectedRadio: selectedValue })
-    // }, [selectedValue]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_START_YEAR', startYear: startYear })
-    // }, [startYear]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_END_YEAR', endYear: endYear })
-    // }, [endYear]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_EXP', exp: exp })
-    // }, [exp]);
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_USERNAME', username: username })
-    // }, [username])
-    // useEffect(() => {
-    //     dispatch({ type: 'SET_MOBILE', mobile: mobile })
-    // }, [mobile])
+    const classes = useStyles();
 
 
     const handleOtpChange = () => {
@@ -95,16 +77,20 @@ const OtpScreen = () => {
         // }
     }
 
+    React.useEffect(() => {
+        counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    }, [counter]);
+
 
     return (
         <>
-            <div className="text-area-three transform-50">
+            <div className="text-area-three">
                 <div className="line-one">
-                    <span>Enter the code generated on your mobile device below to Log In!
+                    <span>Enter the code generated on your mobile device {state.mobile}
                     </span>
                 </div>
             </div>
-            <div className="form-area fa-otp">
+            <div className="form-area fa-otp otp-wrap">
                 <form className={classes.root} noValidate autoComplete="off">
                     <div className="input-area">
                         <div className="input-legends">OTP
@@ -113,7 +99,7 @@ const OtpScreen = () => {
                     </div>
 
                     <CardActions className='button-skip'>
-                        <Button size="small" onClick={()=>sendOtp()}>RESEND OTP</Button>
+                        <Button size="small" disabled={counter > 1} onClick={()=>sendOtp()}>Resend OTP</Button> {counter > 0 ? <p class="font-xs"> in {counter}</p> : ''} 
                     </CardActions>
                 </form>
             </div >
