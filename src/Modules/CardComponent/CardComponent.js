@@ -97,7 +97,7 @@ const CardComponent = () => {
         };
         let response = await ApiCall('/api/v1/verifyOtp', saveProfileHeader);
         if (response.success === "true") {
-            console.log(response);
+            alert(response.message)
             localStorage.setItem('token', response.data.token)
             window.location.pathname = '/';
         } else if (response.success === "false") {

@@ -7,6 +7,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,7 +36,9 @@ const ScreenThree = () => {
         endYear: eyear,
         exp: xp,
         username: uname,
-        mobile: mob } = state;
+        mobile: mob,
+        isWhatsapp: isWhatsapp
+    } = state;
 
     let usernameInput = React.createRef();
     let mobileInput = React.createRef();
@@ -112,7 +116,6 @@ const ScreenThree = () => {
 
 
 
-
     for (let count = 1990; count <= new Date().getFullYear(); count++) {
         yearArr.push(count);
     }
@@ -139,7 +142,13 @@ const ScreenThree = () => {
                     <div className="input-area mt-3">
                         <div className="input-legends">Mobile<span>*You will recieve a verification code</span>
                         </div>
-                        <Input ref={mobileInput} placeholder="+91 | Mobile Number" onChange={() => handleMobileChange()} inputProps={{ 'aria-label': 'description', 'value': mobile }}  />
+                        <PhoneInput
+                            international
+                            countryCallingCodeEditable={false}
+                            defaultCountry="IN"
+                            value={mobile}
+                            onChange={setMobile}/>
+                        {/* <Input ref={mobileInput} placeholder="+91 | Mobile Number" onChange={() => handleMobileChange()} inputProps={{ 'aria-label': 'description', 'value': mobile }}  /> */}
                     </div>
 
                     <div className="input-area m-0">

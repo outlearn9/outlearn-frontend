@@ -67,6 +67,7 @@
     width: 46% !important;
     margin-bottom: 5px !important;
     float: left;
+    transform: translateY(-25px);
 }
 
 .MuiSelect-selectMenu {

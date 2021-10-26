@@ -133,3 +133,37 @@ em{
   font-size: 40px !important;
   font-weight: 600;
 }
+
+.PhoneInput {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  width: calc(100% - 20px);
+  margin: 10px auto;
+}
+
+.Mui-disabled{
+  opacity: 0.7;
+}
+
+.PhoneInputInput{
+  background: #F9F9FB;
+  font-size: 12px;
+  padding: 0 10px;
+  height: 30px;
+  border: 2px solid transparent !important;
+
+  &:focus-visible {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #5F22E0 !important;
+  }
+}
+
+input:-internal-autofill-selected {
+  appearance: menulist-button;
+  background-image: none !important;
+  background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
+  color: -internal-light-dark(black, white) !important;
+  border: none;
+}
