@@ -7,10 +7,10 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import ScreenOne from '../Screens/ScreenOne';
-import ScreenTwo from '../Screens/ScreenTwo';
+import Specialisation from '../Screens/Specialisation';
+import CareerPath from '../Screens/CareerPath';
 import OtpScreen from '../Screens/OtpScreen';
-import ScreenThree from '../Screens/ScreenThree';
+import BasicInfo from '../Screens/BasicInfo';
 import LoginPage from '../Screens/LoginPage';
 import { v4 as uuidv4 } from 'uuid';
 import { ApiCall } from '../Controller/Controller';
@@ -204,19 +204,19 @@ const CardComponent = () => {
     const getPage = () => {
         switch (pageNo) {
             case 1:
-                return <ScreenOne />;
+                return <Specialisation />;
                 break;
             case 2:
-                return <ScreenTwo />;
+                return <CareerPath />;
                 break;
             case 3:
-                return <ScreenThree />;
+                return <BasicInfo />;
                 break;
             case 4:
                 return <OtpScreen />;
                 break;
             default:
-                return <ScreenOne />;
+                return <Specialisation />;
 
         }
     }

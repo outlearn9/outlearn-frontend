@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import './ScreenTwo.css';
+import './CareerPath.css';
 import Img3 from '../../Assets/SVG/Img3.svg';
 import Button from '@material-ui/core/Button';
 import { Context } from '../../Store/Store'
-const ScreenTwo = () => {
+const CareerPath = () => {
     const [state, dispatch] = useContext(Context);
     const { scrTwoOpt,scrTwoOptSelected } = state;
     const [selectedOpt, setSelectedOpt] = useState(scrTwoOptSelected);
@@ -52,4 +52,4 @@ const ScreenTwo = () => {
 
 }
 
-export default ScreenTwo;
+export default CareerPath;

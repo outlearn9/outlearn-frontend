@@ -125,7 +125,7 @@ em{
 
 .heading-2{
   color: #a8a8a8 !important;
-  font-size: 16px !important;
+  font-size: 18px !important;
 }
 
 .heading-1{
@@ -166,4 +166,8 @@ input:-internal-autofill-selected {
   background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
   color: -internal-light-dark(black, white) !important;
   border: none;
+}
+
+html { 
+  scroll-behavior: smooth; 
 }

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
-import './ScreenOne.css';
+import './Specialisation.css';
 import Img1 from '../../Assets/SVG/img1.svg';
 import Button from '@material-ui/core/Button';
 import { Context } from '../../Store/Store'
 
-const ScreenOne = () => {
+const Specialisation = () => {
     const [state, dispatch] = useContext(Context);
     const { scrOneOpt,scrOneOptSelected } = state;
     const [selectedOpt, setSelectedOpt] = useState(scrOneOptSelected);
@@ -53,4 +53,4 @@ const ScreenOne = () => {
 
 }
 
-export default ScreenOne;
+export default Specialisation;

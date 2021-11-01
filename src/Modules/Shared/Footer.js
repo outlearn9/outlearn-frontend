@@ -5,12 +5,17 @@ import instagramIcon from '../../Assets/SVG/ig.svg';
 import twitterIcon from '../../Assets/SVG/twitter.svg';
 import linkedinIcon from '../../Assets/SVG/linkedin.svg';
 import facebookIcon from '../../Assets/SVG/fb.svg';
-
-
+import emailIcon from '../../Assets/Images/email.png';
+import whatsappIcon from '../../Assets/Images/whatsapp.png';
+import PhoneInput from 'react-phone-number-input';
+import { Context } from '../../Store/Store';
 
 import '../Shared/Footer.scss';
 
 const Footer = () => {
+  const [state, dispatch] = useContext(Context);
+  const { mobile: mob } = state;
+  const [mobile, setMobile] = useState(mob);
 
   return (
     <>
@@ -19,14 +24,14 @@ const Footer = () => {
           <div className="row">
             <div className="col-sm-12 col-md-5">
               <h6 className="heading-1">OUTLEARN</h6>
-              <p className="mt-4 text-justify font-s">
+              <p className="mt-4 text-justify font-s pr-5">
                 OutLearn’s career ladder Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque facilisis amet tincidunt urna, leo penatibus enim. Amet ipsum quam
               </p>
 
               <div className="more-icons">
-               <p>Email</p>
+                <p> <img src={emailIcon} alt="" srcset="" /> Email</p>
 
-               <p>Whatsapp</p>
+                <p><img src={whatsappIcon} alt="" srcset="" />Whatsapp</p>
 
               </div>
 
@@ -50,7 +55,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div className="col-xs-6 col-md-4">
+            <div className="col-xs-6 col-md-4 quick-links">
               <h6 className="heading-2">Quick Links</h6>
               <ul className="footer-links mt-4">
                 <li><a href="http://scanfcode.com/category/c-language/">Home</a></li>
@@ -62,8 +67,14 @@ const Footer = () => {
 
             <div className="col-xs-6 col-md-3 sign-wrap">
               <h6 className="heading-2 p-2 text-center">Sign up now!</h6>
-              <div className="input-area mt-4">
-                <Input placeholder="+91  |  Enter Mobile Number" />
+              <div className="input-area-footer mt-4">
+                <PhoneInput
+                  international
+                  countryCallingCodeEditable={false}
+                  defaultCountry="IN"
+                  value={mobile}
+                  onChange={setMobile}
+                  />
                 <Button variant="outlined" color="primary" className="cont-button">
                   Sign up
                 </Button>

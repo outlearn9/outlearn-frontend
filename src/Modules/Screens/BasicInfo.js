@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Context } from '../../Store/Store'
-import './ScreenThree.css';
+import './BasicInfo.css';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const ScreenThree = () => {
+const BasicInfo = () => {
     const [state, dispatch] = useContext(Context);
 
     const { pageNo: pgNo,
@@ -280,4 +280,4 @@ const ScreenThree = () => {
 
 }
 
-export default ScreenThree;
+export default BasicInfo;

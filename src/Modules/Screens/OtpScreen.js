@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Context } from '../../Store/Store'
-import './ScreenThree.css';
+import './BasicInfo.css';
 import './OtpScreen.css';
 import Input from '@material-ui/core/Input';
 import { makeStyles } from '@material-ui/core/styles';

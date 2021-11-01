@@ -99,11 +99,12 @@
 }
 
 .social-icons li {
-  display      : inline-block;
-  margin: 20px 15px 10px 0;
-  img{
+  display: inline-block;
+  margin : 20px 15px 10px 0;
+
+  img {
     height: 30px;
-    width: auto;
+    width : auto;
   }
 }
 
@@ -185,9 +186,31 @@
   }
 }
 
-.more-icons{
-  p{
+.more-icons {
+  p {
     font-size: 16px;
-    margin: 20px 0 20px 0;
+    margin   : 20px 0 20px 0;
+
+    img {
+      height      : 35px;
+      width       : auto;
+      margin-right: 1rem;
+    }
+  }
+}
+
+.input-area-footer {
+  width          : 100% !important;
+  margin-bottom  : 0px !important;
+  padding        : 2px 0 !important;
+  display        : flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items    : center;
+}
+
+.quick-links{
+  a{
+    font-size: 18px;
   }
 }
